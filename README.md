@@ -4,7 +4,7 @@ An intelligent web application that uses Google's Vertex AI (Gemini) to analyze 
 
 ## 🚀 Live Demo
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://your-app-url.streamlit.app/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://pid-digitizer.streamlit.app/)
 
 ## ✨ Features
 
@@ -35,8 +35,8 @@ An intelligent web application that uses Google's Vertex AI (Gemini) to analyze 
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/pid-digitizer-streamlit.git
-   cd pid-digitizer-streamlit
+   git clone https://github.com/abdullah-engg/PID-Digitizer.git
+   cd PID-Digitizer
    ```
 
 2. **Install dependencies**:
