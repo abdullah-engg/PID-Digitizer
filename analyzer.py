@@ -169,17 +169,38 @@ from preprocessing import preprocess_image
 # --- CONFIGURATION ---
 import os
 import streamlit as st
+import json
+import tempfile
 
 # Try to get from Streamlit secrets first, then environment variables
 try:
     PROJECT_ID = st.secrets["gcp"]["project_id"]
     LOCATION = st.secrets["gcp"]["location"] 
     MODEL_ID = st.secrets["gcp"]["model_id"]
+    
+    # Set up authentication if service account key is provided
+    if "service_account_key" in st.secrets["gcp"]:
+        # Create temporary file for service account key
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(st.secrets["gcp"]["service_account_key"], f)
+            os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = f.name
+            
 except (KeyError, FileNotFoundError):
     # Fallback to environment variables
     PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT_ID", "p-id-digitizer-project")
     LOCATION = os.getenv("GOOGLE_CLOUD_LOCATION", "us-central1")
     MODEL_ID = os.getenv("GOOGLE_CLOUD_MODEL_ID", "gemini-2.5-pro")
+
+# Set up authentication from environment variable if available
+credentials_json = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")
+if credentials_json:
+    try:
+        credentials_data = json.loads(credentials_json)
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(credentials_data, f)
+            os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = f.name
+    except json.JSONDecodeError:
+        print("Warning: Invalid JSON in GOOGLE_APPLICATION_CREDENTIALS_JSON")
 
 def extract_json_from_response(text: str):
     """Finds and parses the first valid JSON block from a string."""
