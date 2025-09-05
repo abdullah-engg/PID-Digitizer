@@ -1,0 +1,34 @@
+# Core Web Framework
+streamlit>=1.39.0
+
+# Data Processing & Analysis
+pandas>=2.2.0
+numpy>=1.26.0
+
+# Computer Vision & Image Processing
+opencv-python>=4.10.0
+Pillow>=10.4.0
+
+# AI/ML Libraries
+google-cloud-aiplatform>=1.45.0
+
+# Graph Visualization
+pyvis>=0.3.2
+networkx>=3.3
+matplotlib>=3.8.0
+
+# Data Validation
+jsonschema>=4.23.0
+
+# Standard Library Extensions (if needed for deployment)
+# Note: These are typically included with Python but may be needed in some deployment environments
+# argparse - built-in
+# json - built-in  
+# os - built-in
+# re - built-in
+# sqlite3 - built-in
+# xml.etree.ElementTree - built-in
+# xml.dom.minidom - built-in
+# uuid - built-in
+# dataclasses - built-in (Python 3.7+)
+# typing - built-in (Python 3.5+)
