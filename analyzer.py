@@ -182,7 +182,7 @@ try:
     if "service_account_key" in st.secrets["gcp"]:
         # Create temporary file for service account key
         with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
-            json.dump(st.secrets["gcp"]["service_account_key"], f)
+            json.dump(dict(st.secrets["gcp"]["service_account_key"]), f)
             os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = f.name
             
 except (KeyError, FileNotFoundError):
